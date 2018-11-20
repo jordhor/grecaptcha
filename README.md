@@ -10,20 +10,40 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
     this.gRecaptcha = function () {
         this.sitekey = undefined;
         this.id = undefined;	
-        this.render = function { ... }
-        this.reset = function { ... }
+        this.render = function { }
+        this.reset = function { }
     }
 } (jQuery, window));
 ```
 
 ```javascript
 var helper = new gRecaptcha({
-	selector: 'login_recaptcha',
-	wrapper: '.frm-login .recaptcha',
-	onload: function() { ... },
-	success: function() { validate($('.frm-login')); },
-	expired: function() { validate($('.frm-login')); }
+    selector: 'login_recaptcha',
+    wrapper: '.frm-login .recaptcha',
+    onload: function() { },
+    success: function() { validate($('.frm-login')); },
+    expired: function() { validate($('.frm-login')); }
 });
+```
+
+```html
+<html>
+    <body>
+	<form class="frm-login">
+	    <div class="recaptcha ctr-invalid">
+	        <div id="login_recaptcha" class="g-recaptcha" data-sitekey=""></div>
+	    </div>
+	</form>
+    </body>
+    <script>
+        var helper = new gRecaptcha({
+            selector: 'login_recaptcha',
+            wrapper: '.frm-login .recaptcha',
+            success: function() { validate($('.frm-login')); },
+            expired: function() { validate($('.frm-login')); }
+        });
+    </script>
+</html>
 ```
 
 In this example we'll use two google recaptcha components in the same page, one for the shopping cart form and one for the user registration form.
