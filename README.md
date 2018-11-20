@@ -5,7 +5,7 @@
 Integrating the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
 
 `grecaptcha-helper.js`
-````javascript
+```javascript
 (function ($, window, undefined) {
     this.gRecaptcha = function () {
         this.sitekey = undefined;
@@ -16,7 +16,7 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
 } (jQuery, window));
 ```
 
-````javascript
+```javascript
 var helper = new gRecaptcha({
 	selector: 'login_recaptcha',
 	wrapper: '.frm-login .recaptcha',
