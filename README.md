@@ -31,7 +31,7 @@ In this example we'll use two google recaptcha components in the same page, one 
 ## Front-end
 
 `cart.php`
-```html
+```php
 <!-- Shooping cart form -->
 <form id="frm-shopping-cart" action="cart.php" method="post">
     <!-- our component's wrapper -->
