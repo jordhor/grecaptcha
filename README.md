@@ -116,15 +116,6 @@ We need a callback module to include at bottom of our web page:
 
 `callback.php`
 ```php
-<?
-/**
- * 	<div id="recaptcha_1" class="g-recaptcha" data-sitekey="">
- *
- *  NOTA: Colocar al final del documento, para que esté después de las declaraciones html de cada recaptcha.
- *	include WEB_PATH.'tpl/recaptcha/callback.php'
- */
-?>
-
 <? include 'recaptcha/keys.php'; ?>
 
 <? if (!$ignore_recaptcha) { ?>
@@ -138,7 +129,7 @@ We need a callback module to include at bottom of our web page:
         <? // Declaramos una función para capturar el callback y renderizar los controles. ?>
         var recaptchaOnloadCallback = function() {
 
-        	<? // Llamamos al callback de cada recaptcha para su renderización ?>
+            <? // Llamamos al callback de cada recaptcha para su renderización ?>
             if (window.user) window.user.recaptcha.render();
             if (window.cart) window.cart.recaptcha.render();
         };
@@ -160,4 +151,35 @@ We need a callback module to include at bottom of our web page:
     </script>
 
 <? } ?>
+```
+
+
+`recaptcha/verify.php`
+```php
+// Recaptcha keys
+include './recaptcha/keys.php';
+
+// The variable '$ignore_recaptcha' is set in 'recaptcha/keys.php'
+if(isset($ignore_recaptcha) && !$ignore_recaptcha) {
+
+    // Check request param.
+    if (!array_key_exists('g-recaptcha-response', $_REQUEST)) { header("HTTP/1.1 474 Missing g-recaptcha-response"); exit(); }
+
+    // Verify the key.
+    $response = json_decode(file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, stream_context_create(array(
+        'http' => array(
+            'method' => 'POST',
+            'content' => http_build_query(array(
+                'secret' => $recaptcha_private_secretkey,
+                'response' => $_REQUEST["g-recaptcha-response"]
+            ))
+        )
+    ))));
+
+    // Check api response.
+    if (!$response->success) { header("HTTP/1.1 474 Invalid reCaptcha"); exit(); }
+	
+    // I'm not a robot, continue with execution.
+    // ----------------------------------------------------------------------------------------------------
+}
 ```
