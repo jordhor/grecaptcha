@@ -1,26 +1,16 @@
-# Google Recaptcha
+# Google Recaptcha Helper
 
 ![component](/grecaptcha-light.png "Google recaptcha component")
 
 Integrating the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
 
-`grecaptcha-helper.js`
-```javascript
-(function ($, window, undefined) {
-    this.gRecaptcha = function () {
-        this.sitekey = undefined;
-        this.id = undefined;	
-        this.render = function { }
-        this.reset = function { }
-    }
-} (jQuery, window));
-```
-
 ```html
 <html>
     <body>
 	<form class="frm-login">
+	    <!-- Our component's wrapper -->
 	    <div class="recaptcha ctr-invalid">
+	        <!-- Google's recaptcha component container --> 
 	        <div id="login_recaptcha" class="g-recaptcha" data-sitekey="6LdmqjoUAAA..."></div>
 	    </div>
 	    <button type="submit">Go</button>
@@ -28,18 +18,27 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
     </body>
     <script src="jquery.js"></script>
     <script>
-        var helper = new gRecaptcha({
-            selector: 'login_recaptcha',
+	// Your validation function.
+	var validate = function(frm) { ... }
+	// Our helper instance.
+	var helper = new gRecaptcha({
+	    // DOM selectors
+            container: 'login_recaptcha',
             wrapper: '.frm-login .recaptcha',
+	    // Helper makes easy validation process attaching validation classes to wrapper.
             success: function() { validate($('.frm-login')); },
             expired: function() { validate($('.frm-login')); }
         });
+	// Our recaptcha api callback.
 	var loadRecaptcha = function() {
+            // Leave me the hard work.
             helper.render();
         };
-	var validate = function(frm) { ... }
+
     </script>
+    <!-- Our helper -->
     <script src="grecaptcha-helper.js"></script>
+    <!-- Google Recaptcha Api -->
     <script src="https://www.google.com/recaptcha/api.js?onload=loadRecaptcha&render=explicit" async defer></script>
 </html>
 ```
