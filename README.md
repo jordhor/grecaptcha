@@ -4,7 +4,8 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
 
 ![component](/grecaptcha-light.png "Google recaptcha component")
 
-In this example we'll use two grecaptcha google components (one for the login form and one for the registration form):
+In this example we'll use two google recaptcha components (one for the login form and one for the registration form).
+
 `user.html`
 ```html
 <!-- Login form -->
