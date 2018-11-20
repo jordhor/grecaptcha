@@ -112,18 +112,52 @@ Store our keys in a server file like `/recaptcha/keys.php`.
 ?>
 ```
 
+We need a callback module to include at bootom of our page:
 
-### Constructor options
+`callback.php`
+```php
+<?
+/**
+ * 	<div id="recaptcha_1" class="g-recaptcha" data-sitekey="">
+ *
+ *  NOTA: Colocar al final del documento, para que esté después de las declaraciones html de cada recaptcha.
+ *	include WEB_PATH.'tpl/recaptcha/callback.php'
+ */
+?>
 
-```javascript
-{
-    wrapper: '.recaptcha',
-    selector: 'recaptcha',
-    theme: 'light',
-    valid: 'ctr-valid',
-    invalid: 'ctr-invalid',   
-    onload: function() { ... },
-    success: function() { ... },
-    expired: function() { ... }
-}
+<? include 'recaptcha/keys.php'; ?>
+
+<? if (!$ignore_recaptcha) { ?>
+
+    <? // Recaptcha callback ?>
+    <script type="text/javascript">
+
+        <? // Establecemos la clave en los controles. ?>
+        $('.g-recaptcha').data('sitekey', '<?= $recaptcha_public_sitekey ?>');
+
+        <? // Declaramos una función para capturar el callback y renderizar los controles. ?>
+        var recaptchaOnloadCallback = function() {
+
+        	<? // Llamamos al callback de cada recaptcha para su renderización ?>
+            if (window.user) window.user.recaptcha.render();
+            if (window.cart) window.cart.recaptcha.render();
+        };
+
+    </script>
+
+    <? // Recaptcha load ?>
+    <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit" async defer></script>
+
+
+<? } else { ?>
+
+    <? // Ignore recaptcha ?>
+    <script type="text/javascript">
+
+        if (window.user) window.user.ignoreRecaptcha = true;
+        if (window.cart) window.cart.ignoreRecaptcha = true;
+
+    </script>
+
+<? } ?>
 ```
