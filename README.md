@@ -1,6 +1,6 @@
-# grecaptcha
+# Google Recaptcha
 
-We are going to integrate the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
+Integrating the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
 
 In this example we'll use two grecaptcha google components (one for the login form and one for the registration form):
 `user.html`
