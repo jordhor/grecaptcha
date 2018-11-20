@@ -1,10 +1,12 @@
 # grecaptcha
 
-We are going to integrate the Google Recaptcha component into a web project without the help of any framework that does all the work for us, with a back-end using ** PHP ** and a front-end with ** jQuery **
+We are going to integrate the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
 
+In this example we'll use two grecaptcha google components (one for the login form and one for the registration form):
+`user.html`
 ```html
 <!-- Login form -->
-<form action="login.php" method="post">
+<form action="api/login.php" method="post">
     <!-- component's container -->
     <div class="recaptcha ctr-invalid">
         <!-- google's recaptcha component wrapper --> 
@@ -13,7 +15,7 @@ We are going to integrate the Google Recaptcha component into a web project with
 </form>
 
 <!-- Register form -->
-<form action="register.php" method="post">
+<form action="api/register.php" method="post">
     <!-- component's container -->
     <div class="recaptcha ctr-invalid">
         <!-- google's recaptcha component wrapper --> 
@@ -22,6 +24,7 @@ We are going to integrate the Google Recaptcha component into a web project with
 </form>
 ```
 
+Store our keys in a server file like `/recaptcha/keys.php`.
 ```php
 <?php
     // NOTE: Get a key from https://www.google.com/recaptcha/admin/create
