@@ -1,2 +1,2 @@
 # grecaptcha
-Simplify the use of grecaptcha in a web project
+Simplifying the use of grecaptcha in a web project
