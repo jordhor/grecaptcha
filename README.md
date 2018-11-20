@@ -37,7 +37,7 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
 
     </script>
     <!-- Our helper -->
-    <script src="grecaptcha-helper.js"></script>
+    <script src="grecaptcha-helper.min.js"></script>
     <!-- Google Recaptcha Api -->
     <script src="https://www.google.com/recaptcha/api.js?onload=loadRecaptcha&render=explicit" async defer></script>
 </html>
