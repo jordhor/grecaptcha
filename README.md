@@ -4,6 +4,28 @@
 
 Integrating the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
 
+`grecaptcha-helper.js`
+````javascript
+(function ($, window, undefined) {
+    this.gRecaptcha = function () {
+        this.sitekey = undefined;
+        this.id = undefined;	
+        this.render = function { ... }
+        this.reset = function { ... }
+    }
+} (jQuery, window));
+```
+
+````javascript
+var helper = new gRecaptcha({
+	selector: 'login_recaptcha',
+	wrapper: '.frm-login .recaptcha',
+	onload: function() { ... },
+	success: function() { validate($('.frm-login')); },
+	expired: function() { validate($('.frm-login')); }
+});
+```
+
 In this example we'll use two google recaptcha components in the same page, one for the shopping cart form and one for the user registration form.
 
 ## Front-end
@@ -27,6 +49,10 @@ In this example we'll use two google recaptcha components in the same page, one 
         <div id="register_recaptcha" class="g-recaptcha" data-sitekey=""></div>
     </div>
 </form>
+
+<script src="grecaptcha-helper.min.js"></script>
+
+<? include "recaptcha/callback.php"; ?>
 ```
 
 We declare a `div` as a container where google will render the component, with a class `g-recaptcha` that we'll use only for DOM selection purposes. We use another parent `div` as the component's wrapper for validation purposes as well. The classes `ctr-valid` and `ctr-invalid` are established depending on whether the validation has been passed. In order to establish different classes names we can use the options passed in constructor function ([see below for details](#Constructor-options "constructor options") ).
@@ -37,21 +63,15 @@ We declare a `div` as a container where google will render the component, with a
 }
 ```
 
- 
- 
-
-
 `cart.js`
 ```javascript
 cart.recaptcha = new gRecaptcha({
     wrapper: '.frm-shopping-cart .recaptcha',
     selector: 'cart_recaptcha',
     theme: 'dark',
-
     onload: function() {
         // console.log('cart.recaptcha -> onload');
     },
-
     success: function() {
         // console.log('cart.recaptcha -> success');
         var frm = $('.frm-cart-register'); if (frm.length) {
@@ -59,7 +79,6 @@ cart.recaptcha = new gRecaptcha({
             cart.refresh(frm);
         }
     },
-
     expired: function() {
         // console.log('cart.recaptcha -> expired');
         var frm = $('.frm-cart-register'); if (frm.length) {
@@ -76,11 +95,9 @@ user.recaptcha = new gRecaptcha({
     wrapper: '.frm-user-register .recaptcha',
     selector: 'register_recaptcha',
     theme: 'dark',
-
     onload: function() {
         // console.log('user.recaptcha -> onload');
     },
-
     success: function() {
         // console.log('user.recaptcha -> success');
         var frm = $('.frm-user-register'); if (frm.length) {
@@ -88,7 +105,6 @@ user.recaptcha = new gRecaptcha({
             user.refresh(frm);
         }
     },
-
     expired: function() {
         // console.log('user.recaptcha -> expired');
         var frm = $('.frm-user-register'); if (frm.length) {
