@@ -4,24 +4,24 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
 
 ![component](/grecaptcha-light.png "Google recaptcha component")
 
-In this example we'll use two google recaptcha components (one for the login form and one for the registration form).
+In this example we'll use two google recaptcha components in the same scope (one for the shopping cart form and one for the user registration form).
 
-`user.html`
+`cart.php`
 ```html
-<!-- Login form -->
-<form action="api/login.php" method="post">
-    <!-- component's container -->
+<!-- Shooping cart form -->
+<form id="frm-shopping-cart" action="cart.php" method="post">
+    <!-- our component's wrapper -->
     <div class="recaptcha ctr-invalid">
-        <!-- google's recaptcha component wrapper --> 
+        <!-- google's recaptcha component container --> 
         <div id="login_recaptcha" class="g-recaptcha" data-sitekey=""></div>
     </div>
 </form>
 
 <!-- Register form -->
-<form action="api/register.php" method="post">
-    <!-- component's container -->
+<form class="frm-user-register" action="api/register.php" method="post">
+    <!-- our component's wrapper -->
     <div class="recaptcha ctr-invalid">
-        <!-- google's recaptcha component wrapper --> 
+        <!-- google's recaptcha component container --> 
         <div id="register_recaptcha" class="g-recaptcha" data-sitekey=""></div>
     </div>
 </form>
@@ -47,3 +47,38 @@ Store our keys in a server file like `/recaptcha/keys.php`.
 ?>
 ```
 
+`user.js`
+```javascript
+(function(user, $, window, undefined) {
+    user.recaptcha = function() { ... }
+}(window.user = window.user || {}, jQuery, window));
+```
+
+`user.js`
+```javascript
+user.recaptcha = new gRecaptcha({
+    wrapper: '.frm-user-register .recaptcha',
+    selector: 'register_recaptcha',
+    theme: 'dark',
+
+    onload: function() {
+        console_log('user.recaptcha -> onload');
+    },
+
+    success: function() {
+        // console_log('user.recaptcha -> success');
+        var frm = $('.frm-user-register'); if (frm.length) {
+            user.validate(frm);
+            user.refresh(frm);
+        }
+    },
+
+    expired: function() {
+        // console_log('user.recaptcha -> expired');
+        var frm = $('.frm-user-register'); if (frm.length) {
+            user.validate(frm);
+            user.refresh(frm);
+        }
+    }
+});
+```
