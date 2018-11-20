@@ -112,7 +112,7 @@ Store our keys in a server file like `/recaptcha/keys.php`.
 ?>
 ```
 
-We need a callback module to include at bootom of our page:
+We need a callback module to include at bottom of our web page:
 
 `callback.php`
 ```php
