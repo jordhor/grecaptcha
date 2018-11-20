@@ -97,6 +97,7 @@ user.recaptcha = new gRecaptcha({
 });
 ```
 
+
 ## Back-end
 
 Store our keys in a server file like `/recaptcha/keys.php`.
