@@ -1,10 +1,10 @@
 # Google Recaptcha
 
-Integrating the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
-
 ![component](/grecaptcha-light.png "Google recaptcha component")
 
-In this example we'll use two google recaptcha components in the same scope (one for the shopping cart form and one for the user registration form).
+Integrating the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
+
+In this example we'll use two google recaptcha components in the same page, one for the shopping cart form and one for the user registration form.
 
 ## Front-end
 
@@ -29,7 +29,7 @@ In this example we'll use two google recaptcha components in the same scope (one
 </form>
 ```
 
-We use a `div` as a component' wrapper for validation purposes as well. The classes `ctr-valid` and `ctr-invalid` are established depending on whether the validation has been passed. In order to establish different classes names we can use the options passed in constructor function.
+We use a `div` as a component's wrapper for validation purposes as well. The classes `ctr-valid` and `ctr-invalid` are established depending on whether the validation has been passed. In order to establish different classes names we can use the options passed in constructor function ([see below for details](#constructor_options "constructor options") ).
 ```css
 .recaptcha {
     margin: 20px 0px 10px;
@@ -112,3 +112,21 @@ Store our keys in a server file like `/recaptcha/keys.php`.
 ```
 
 
+### Constructor options [constructor_options]
+
+```javascript
+{
+    wrapper: '.recaptcha',
+    selector: 'recaptcha',
+    theme: 'dark',
+
+	valid: 'ctr-valid',
+	invalid: 'ctr-invalid',
+
+    onload: function() { ... },
+
+    success: function() { ... },
+
+    expired: function() { ... }
+}
+```
