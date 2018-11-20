@@ -29,7 +29,7 @@ In this example we'll use two google recaptcha components in the same page, one 
 </form>
 ```
 
-We declare a `div` as a google's recaptcha component container with a class `g-recaptcha` that we'll use only for DOM selection propouses. We use another parent `div` as a component's wrapper for validation purposes as well. The classes `ctr-valid` and `ctr-invalid` are established depending on whether the validation has been passed. In order to establish different classes names we can use the options passed in constructor function ([see below for details](#Constructor-options "constructor options") ).
+We declare a `div` as a container where google will render the component, with a class `g-recaptcha` that we'll use only for DOM selection purposes. We use another parent `div` as the component's wrapper for validation purposes as well. The classes `ctr-valid` and `ctr-invalid` are established depending on whether the validation has been passed. In order to establish different classes names we can use the options passed in constructor function ([see below for details](#Constructor-options "constructor options") ).
 ```css
 .recaptcha {
     margin: 20px 0px 10px;
