@@ -37,7 +37,7 @@ We declare a `div` as a container where google will render the component, with a
 }
 ```
 
-
+ 
 
 `cart.js`
 ```javascript
