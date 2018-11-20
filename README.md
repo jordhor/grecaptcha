@@ -34,13 +34,13 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
             success: function() { validate($('.frm-login')); },
             expired: function() { validate($('.frm-login')); }
         });
-	var recaptchaCallback = function() {
+	var loadRecaptcha = function() {
             helper.render();
         };
 	var validate = function(frm) { ... }
     </script>
     <script src="grecaptcha-helper.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaCallback&render=explicit" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=loadRecaptcha&render=explicit" async defer></script>
 </html>
 ```
 
