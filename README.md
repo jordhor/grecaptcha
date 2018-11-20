@@ -100,7 +100,8 @@ user.recaptcha = new gRecaptcha({
 
 ## Back-end
 
-Store our keys in a server file like `/recaptcha/keys.php`.
+Store our keys in a server file.
+`recaptcha/keys.php`.
 ```php
 <?php
     // NOTE: Get a key from https://www.google.com/recaptcha/admin/create
@@ -112,9 +113,8 @@ Store our keys in a server file like `/recaptcha/keys.php`.
 ?>
 ```
 
-We need a callback module to include at bottom of our web page:
-
-`callback.php`
+We need a callback module to include at bottom of our web page.
+`recaptcha/callback.php`
 ```php
 <? include 'recaptcha/keys.php'; ?>
 
@@ -153,7 +153,7 @@ We need a callback module to include at bottom of our web page:
 <? } ?>
 ```
 
-
+Finally, include verification code module to your back-end service in order to validate your form.
 `recaptcha/verify.php`
 ```php
 // Recaptcha keys
