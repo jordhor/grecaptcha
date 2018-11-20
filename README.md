@@ -5,18 +5,18 @@ We are going to integrate the Google Recaptcha component into a web project with
 ```html
 <!-- Login form -->
 <form action="login.php" method="post">
-    <!-- wrapper for google grecaptcha component -->
+    <!-- component's container -->
     <div class="recaptcha ctr-invalid">
-        <!-- component of the login form --> 
+        <!-- google's recaptcha component wrapper --> 
         <div id="login_recaptcha" class="g-recaptcha" data-sitekey=""></div>
     </div>
 </form>
 
 <!-- Register form -->
 <form action="register.php" method="post">
-    <!-- wrapper for google grecaptcha component -->
+    <!-- component's container -->
     <div class="recaptcha ctr-invalid">
-        <!-- component of the register form --> 
+        <!-- google's recaptcha component wrapper --> 
         <div id="register_recaptcha" class="g-recaptcha" data-sitekey=""></div>
     </div>
 </form>
@@ -25,8 +25,8 @@ We are going to integrate the Google Recaptcha component into a web project with
 ```php
 <?php
     // NOTE: Get a key from https://www.google.com/recaptcha/admin/create
-    $recaptcha_public_sitekey = '6LdmqjoUKLMopP8z69zcqQb-e2g9xYgegupm9KB2';
-    $recaptcha_private_secretkey = "6LdmqjoUKLMopBwJrK9PWQVi5_to23CEuvw9bYcJ";
+    $recaptcha_public_sitekey = '7VcngjoUKLMopP8z234cqQb-e2g9xYyogupm9KB2';
+    $recaptcha_private_secretkey = "7VcngjoUKLMopBwJ234PWQVi5_to23yogvw9bYcJ";
 
     // Used for debug porpouses only.
     $ignore_recaptcha = false;
