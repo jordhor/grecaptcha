@@ -32,3 +32,4 @@ We are going to integrate the Google Recaptcha component into a web project with
 	$ignore_recaptcha = false;
 ?>
 ```
+
