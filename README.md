@@ -16,16 +16,6 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
 } (jQuery, window));
 ```
 
-```javascript
-var helper = new gRecaptcha({
-    selector: 'login_recaptcha',
-    wrapper: '.frm-login .recaptcha',
-    onload: function() { },
-    success: function() { validate($('.frm-login')); },
-    expired: function() { validate($('.frm-login')); }
-});
-```
-
 ```html
 <html>
     <body>
@@ -42,6 +32,7 @@ var helper = new gRecaptcha({
             success: function() { validate($('.frm-login')); },
             expired: function() { validate($('.frm-login')); }
         });
+	function validate(frm) { ... }
     </script>
 </html>
 ```
