@@ -112,21 +112,21 @@ Store our keys in a server file like `/recaptcha/keys.php`.
 ```
 
 
-### Constructor options [constructor_options]
+### [Constructor options][constructor_options]
 
-```javascript
+```json
 {
     wrapper: '.recaptcha',
     selector: 'recaptcha',
     theme: 'dark',
-
-	valid: 'ctr-valid',
-	invalid: 'ctr-invalid',
-
+    
+    valid: 'ctr-valid',
+    invalid: 'ctr-invalid',
+    
     onload: function() { ... },
-
+    
     success: function() { ... },
-
+    
     expired: function() { ... }
 }
 ```
