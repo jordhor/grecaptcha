@@ -27,6 +27,14 @@ In this example we'll use two google recaptcha components (one for the login for
 </form>
 ```
 
+The `div` component container has validation purposes as well. Instead, the wrapper class is only used as a selector to initialize all the recaptcha components of the current page all at once.
+```css
+.recaptcha {
+    margin: 20px 0px 10px;
+    text-align: center;
+}
+```
+
 Store our keys in a server file like `/recaptcha/keys.php`.
 ```php
 <?php
