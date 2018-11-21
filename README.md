@@ -84,7 +84,6 @@ We declare a `div` as a container where google will render the component, with a
 ```javascript
 RecaptchaHelper.register({
     selector: 'cart_recaptcha',
-    theme: 'dark',
     success: function() { cart.validate(); },
     expired: function() { cart.validate(); }
 });
@@ -94,7 +93,6 @@ RecaptchaHelper.register({
 ```javascript
 RecaptchaHelper.register({
     selector: 'register_recaptcha',
-    theme: 'dark',
     success: function() { user.validate(); },
     expired: function() { user.validate(); }
 });
