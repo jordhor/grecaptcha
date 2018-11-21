@@ -20,19 +20,20 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
     <script>
 	// Your validation function.
 	var validate = function(frm) { ... }
+	// Pass our key to helper.
+	RecaptchaHelper.sitekey = "6LdnprAUUf....";
 	// Our helper instance.
-	var helper = new gRecaptcha({
-	    // DOM selectors
-            container: 'login_recaptcha',
-            wrapper: '.frm-login .recaptcha',
-	    // Helper makes easy validation process attaching validation classes to wrapper.
+	RecaptchaHelper.register({
+	    // DOM selector
+            selector: 'login_recaptcha',
+	    // Helper attach validation classes to wrapper making more easy validation process.
             success: function() { validate($('.frm-login')); },
             expired: function() { validate($('.frm-login')); }
         });
 	// Our recaptcha api callback.
 	var loadRecaptcha = function() {
-            // Leave me the hard work.
-            helper.render();
+            // Render all registered recaptcha components.
+            window.RecaptchaHelper.render();
         };
 
     </script>
