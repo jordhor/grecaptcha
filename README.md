@@ -71,7 +71,8 @@ In this example we'll use two google recaptcha components in the same page, one 
 <script src="grecaptcha-helper.min.js"></script>
 ```
 
-We declare a `div` as a container where google will render the component, with a class `g-recaptcha` that we'll use only for DOM selection purposes. We use another parent `div` as the component's wrapper for validation purposes as well. The classes `ctr-valid` and `ctr-invalid` are established depending on whether the validation has been passed. In order to establish different classes names we can use the options passed in constructor function ([see below for details](#Constructor-options "constructor options") ).
+We declare a `div` as a container where google will render the component, with a class `g-recaptcha` that we'll use only for DOM selection purposes. We use another parent `div` as the component's wrapper for validation purposes as well. The classes `ctr-valid` and `ctr-invalid` are established depending on whether the validation has been passed.
+
 ```css
 .recaptcha {
     margin: 20px 0px 10px;
@@ -84,14 +85,8 @@ We declare a `div` as a container where google will render the component, with a
 RecaptchaHelper.register({
     selector: 'cart_recaptcha',
     theme: 'dark',
-    success: function() {
-        // console.log('cart.recaptcha -> success');
-	cart.validate();
-    },
-    expired: function() {
-        // console.log('cart.recaptcha -> expired');
-        cart.validate();
-    }
+    success: function() { cart.validate(); },
+    expired: function() { cart.validate(); }
 });
 ```
 
@@ -100,14 +95,8 @@ RecaptchaHelper.register({
 RecaptchaHelper.register({
     selector: 'register_recaptcha',
     theme: 'dark',
-    success: function() {
-        // console.log('user.recaptcha -> success');
-        user.validate();
-    },
-    expired: function() {
-        // console.log('user.recaptcha -> expired');
-        user.validate();
-    }
+    success: function() { user.validate(); },
+    expired: function() { user.validate(); }
 });
 ```
 
@@ -130,7 +119,7 @@ Store our keys in a server file.
 We need a callback module to include at bottom of our web page.
 `recaptcha/callback.php`
 ```php
-<? include 'recaptcha/keys.php'; ?>
+<? include './recaptcha/keys.php'; ?>
 
 <? if (!$ignore_recaptcha) { ?>
 
