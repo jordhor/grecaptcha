@@ -21,7 +21,7 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
 	// Your validation function.
 	var validate = function(frm) { ... }
 	// Pass our key to helper.
-	RecaptchaHelper.sitekey = "6LdnprAUUf....";
+	RecaptchaHelper.sitekey = "7VcngjoUKLM....";
 	// Our helper instance.
 	RecaptchaHelper.register({
 	    // DOM selector
@@ -81,52 +81,32 @@ We declare a `div` as a container where google will render the component, with a
 
 `cart.js`
 ```javascript
-cart.recaptcha = new gRecaptcha({
-    wrapper: '.frm-shopping-cart .recaptcha',
+RecaptchaHelper.register({
     selector: 'cart_recaptcha',
     theme: 'dark',
-    onload: function() {
-        // console.log('cart.recaptcha -> onload');
-    },
     success: function() {
         // console.log('cart.recaptcha -> success');
-        var frm = $('.frm-cart-register'); if (frm.length) {
-            cart.validate(frm);
-            cart.refresh(frm);
-        }
+	cart.validate();
     },
     expired: function() {
         // console.log('cart.recaptcha -> expired');
-        var frm = $('.frm-cart-register'); if (frm.length) {
-            cart.validate(frm);
-            cart.refresh(frm);
-        }
+        cart.validate();
     }
 });
 ```
 
 `user.js`
 ```javascript
-user.recaptcha = new gRecaptcha({
-    wrapper: '.frm-user-register .recaptcha',
+RecaptchaHelper.register({
     selector: 'register_recaptcha',
     theme: 'dark',
-    onload: function() {
-        // console.log('user.recaptcha -> onload');
-    },
     success: function() {
         // console.log('user.recaptcha -> success');
-        var frm = $('.frm-user-register'); if (frm.length) {
-            user.validate(frm);
-            user.refresh(frm);
-        }
+        user.validate();
     },
     expired: function() {
         // console.log('user.recaptcha -> expired');
-        var frm = $('.frm-user-register'); if (frm.length) {
-            user.validate(frm);
-            user.refresh(frm);
-        }
+        user.validate();
     }
 });
 ```
@@ -157,21 +137,19 @@ We need a callback module to include at bottom of our web page.
     <? // Recaptcha callback ?>
     <script type="text/javascript">
 
-        <? // Establecemos la clave en los controles. ?>
-        $('.g-recaptcha').data('sitekey', '<?= $recaptcha_public_sitekey ?>');
+        <? // Set key to the components ?>
+	RecaptchaHelper.sitekey = "7VcngjoUKLM....";
 
-        <? // Declaramos una función para capturar el callback y renderizar los controles. ?>
-        var recaptchaOnloadCallback = function() {
-
-            <? // Llamamos al callback de cada recaptcha para su renderización ?>
-            if (window.user) window.user.recaptcha.render();
-            if (window.cart) window.cart.recaptcha.render();
+        <? // Capture onload callback ?>
+        var callbackRecaptcha = function() {
+            <? // Explicit render of components ?>
+            RecaptchaHelper.render();
         };
 
     </script>
 
     <? // Recaptcha load ?>
-    <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnloadCallback&render=explicit" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=callbackRecaptcha&render=explicit" async defer></script>
 
 
 <? } else { ?>
