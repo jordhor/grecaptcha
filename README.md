@@ -11,7 +11,7 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
 	    <!-- Our component's wrapper -->
 	    <div class="recaptcha ctr-invalid">
 	        <!-- Google's recaptcha component container --> 
-	        <div id="login_recaptcha" class="g-recaptcha" data-sitekey="6LdmqjoUAAA..."></div>
+	        <div id="login_recaptcha" class="g-recaptcha" data-sitekey=""></div>
 	    </div>
 	    <button type="submit">Go</button>
 	</form>
