@@ -1,8 +1,10 @@
 # Google Recaptcha Helper
 
-![component](/grecaptcha-light.png "Google recaptcha component")
+Use Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
 
-Integrating the Google Recaptcha component into a web project with a `PHP` back-end and a front-end using `jQuery`.
+Col 1 | Col2 | Col3
+:-- | :-: | --:
+Ugh this is so ugly | make it | stop
 
 ```html
 <html>
@@ -20,7 +22,7 @@ Integrating the Google Recaptcha component into a web project with a `PHP` back-
     <script>
 	// Your validation function.
 	var validate = function(frm) { ... }
-	// Pass our key to helper.
+	// Pass our key to helper.mark
 	RecaptchaHelper.sitekey = "7VcngjoUKLM....";
 	// Our helper instance.
 	RecaptchaHelper.register({
@@ -167,6 +169,7 @@ We need a callback module to include at bottom of our web page.
 
 Finally, include verification code module to your back-end service in order to validate your form.
 `recaptcha/verify.php`
+
 ```php
 // Recaptcha keys
 include './recaptcha/keys.php';
